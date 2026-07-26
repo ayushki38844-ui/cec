@@ -1,4 +1,4 @@
-name: Publish Docker Packages to GitHub Container Registry
+name: Publish Backend Docker Package to GitHub Container Registry
 
 on:
   push:
@@ -8,8 +8,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME_FRONTEND: ${{ github.repository }}-frontend
   IMAGE_NAME_BACKEND: ${{ github.repository }}-backend
 
 jobs:
@@ -29,20 +27,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Frontend
-        id: meta-frontend
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}
-
-      - name: Build and push Frontend Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./frontend
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta-frontend.outputs.tags }}
-          labels: ${{ steps.meta-frontend.outputs.labels }}
 
       - name: Extract metadata (tags, labels) for Backend
         id: meta-backend
