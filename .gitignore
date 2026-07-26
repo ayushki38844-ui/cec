@@ -1,0 +1,31 @@
+# Node modules
+node_modules/
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+.env/
+__pycache__/
+*.pyc
+
+# IDEs and Misc
+.vscode/
+.idea/
+.DS_Store
+
+# Frontend specifics
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/coverage/
+
+# Next.js logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Env files
+.env*
+!.env.example
