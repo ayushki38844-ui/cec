@@ -9,7 +9,8 @@ function GuidedPurchase() {
     e.preventDefault();
     setStatus('Submitting...');
     try {
-      const res = await fetch('http://localhost:8000/api/requirements', {
+      const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://cec-backend-master.onrender.com';
+      const res = await fetch(`${apiUrl}/api/requirements`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
